@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BbsEntry; // 正しい名前空間でモデルをインポート
+use Validator;
 
 class BbsEntryController extends Controller
 {
@@ -19,6 +20,17 @@ class BbsEntryController extends Controller
     function create(Request $request){
         //@TODO 投稿処理を行う
  		$input = $request->only('author', 'title', 'body');
+		
+		$validatedData = $request->validate([
+			'author' => 'required|string|max:30',
+			'title' => 'required|string|max:30',
+			'body' => 'required|string|max:255'
+		]);
+		//バリデーション失敗
+		if($validator->fails()){
+			return redirect('/')
+       		->withErrors($validator);
+		}
 		
 		$entry = new BbsEntry();
 	    $entry->author = $input["author"];
