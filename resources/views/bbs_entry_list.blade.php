@@ -28,15 +28,28 @@
 
         @foreach ($item_list as $item)
         <div class="entry">
-	        <a href="/{{ $item->id }}">{{ $item->title }}</a>
+	        <a href="/post/{{ $item->id }}">{{ $item->title }}</a>
 	        <div>
 		        {!! nl2br(e($item->body)) !!}
 	        </div>
         </div>
+        <form action="/{{ $item->id }}" id="form_{{ $item->id }}" method="item">
+            @csrf
+            @method('DELETE')
+            <button type="button" onclick="deletePost({{ $item->id }})">delete</button>
+        </form>
         @endforeach
 
         @if(count($item_list) < 1)
         <p>投稿がありません</p>
         @endif  
     </body>
+    <script>
+        function deletePost(id) {
+            'use strict'
+            if (confirm('削除すると復元できません。\n本当に削除しますか？')) {
+                document.getElementById(`form_${id}`).submit();
+            }
+        }
+</script>
 </html>
