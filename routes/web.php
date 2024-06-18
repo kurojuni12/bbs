@@ -22,3 +22,4 @@ Route::get('/', function () {
 
 Route::get('/', [BbsEntryController::class, 'index']);
 Route::post('/create', [BbsEntryController::class, 'create']);
+Route::get('/{bbsEntry}', [BbsEntryController::class,'show']);
