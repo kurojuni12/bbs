@@ -28,7 +28,7 @@
 
         @foreach ($item_list as $item)
         <div class="entry">
-	        <h5>{{ $item->title }}</h5>
+	        <a href="/{{ $item->id }}">{{ $item->title }}</a>
 	        <div>
 		        {!! nl2br(e($item->body)) !!}
 	        </div>

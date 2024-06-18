@@ -16,7 +16,12 @@ class BbsEntryController extends Controller
 		]);    
        
    }
-
+   
+    public function show(BbsEntry $bbsEntry)
+    {
+        return view('show')->with(['bbsEntry' => $bbsEntry]);
+    }
+    
     function create(Request $request){
         //@TODO 投稿処理を行う
  		$input = $request->only('author', 'title', 'body');
