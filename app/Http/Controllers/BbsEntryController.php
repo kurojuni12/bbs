@@ -22,27 +22,28 @@ class BbsEntryController extends Controller
         return view('show')->with(['bbsEntry' => $bbsEntry]);
     }
     
-    function create(Request $request){
-        //@TODO 投稿処理を行う
- 		$input = $request->only('author', 'title', 'body');
-		
-		$validatedData = $request->validate([
-			'author' => 'required|string|max:30',
-			'title' => 'required|string|max:30',
-			'body' => 'required|string|max:255'
-		]);
-		//バリデーション失敗
-		if($validator->fails()){
-			return redirect('/')
-       		->withErrors($validator);
-		}
-		
-		$entry = new BbsEntry();
-	    $entry->author = $input["author"];
-	    $entry->title = $input["title"];
-	    $entry->body = $input["body"];
-	    $entry->save();
+    function create(Request $request)
+    {
+        // 投稿処理を行う
+        $validatedData = $request->validate([
+            'author' => 'required|string|max:30',
+            'title' => 'required|string|max:30',
+            'body' => 'required|string|max:255'
+        ]);
 
-	    return redirect('/');
+        $entry = new BbsEntry();
+        $entry->author = $validatedData["author"];
+        $entry->title = $validatedData["title"];
+        $entry->body = $validatedData["body"];
+        $entry->save();
+
+        return redirect('/');
     }
+    
+    public function delete(BbsEntry $bbsEntry)
+	{
+		$bbsEntry->delete();
+		return redirect('/');
+	}
+
 }
