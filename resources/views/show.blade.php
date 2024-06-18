@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
+    <x-app-layout>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>{{ $bbsEntry->title }}</title>
@@ -19,7 +19,7 @@
         </div>
         <p class=name>投稿者　{{ $bbsEntry->author }}</p>
         <div class="footer">
-            <a href="/">戻る</a>
+            <a href="/home">戻る</a>
         </div>
-    </body>
+    </x-app-layout>
 </html>

@@ -37,13 +37,13 @@ class BbsEntryController extends Controller
         $entry->body = $validatedData["body"];
         $entry->save();
 
-        return redirect('/');
+        return redirect('/home');
     }
     
     public function delete(BbsEntry $bbsEntry)
 	{
 		$bbsEntry->delete();
-		return redirect('/');
+		return redirect('/home');
 	}
 
 }

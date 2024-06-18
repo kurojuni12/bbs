@@ -20,7 +20,7 @@
             }
         </style>
     </head>
-    <body>
+    <x-app-layout>
         <!-- 投稿フォーム -->
         @include("parts.bbs_entry_form")
 
@@ -43,7 +43,7 @@
         @if(count($item_list) < 1)
         <p>投稿がありません</p>
         @endif  
-    </body>
+    </x-app-layout>
     <script>
         function deletePost(id) {
             'use strict'
